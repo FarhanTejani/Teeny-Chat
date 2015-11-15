@@ -11,21 +11,19 @@ body{
 
 .left{
 	background-color: blue;
-	width: 50%;
+	width: 30%;
 	height: 100%;
 	display: inline-block;
 	position: absolute;
-	right: 0px;
 	overflow: scroll;
-	
+
 }
 .right{
 	background-color: yellow;
-	width: 50%;
+	width: 70%;
 	height: 100%;
 	display: inline-block;
 	position: absolute;
 	overflow: scroll;
+	right: 0px;
 }
-
-

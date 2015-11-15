@@ -1,10 +1,14 @@
 var fb = new Firebase("https://teeny-chat.firebaseio.com/");
+
 fb.child("users").on("child_added", function(snapshot, prevChildKey) {
   var data = snapshot.val();
   if (fb.getAuth().uid != data.uid) {
-    $(".chatBox").prepend("<button style='display:list-item;' class='user' value='"+data.uid+"'><img src='"+data.image+"'/>"+data.name+"</button>");
+    $(".left").prepend("<button class='user' value='"+data.uid+"'><img src='"+data.image+"'/>"+data.name+"</button>");
   }
 });
+
+var chatID;
+var showChat = false;
 
 $(document).ready(function() {
 
@@ -13,8 +17,14 @@ $(document).ready(function() {
   }
 
   $("#sendMessage").click(function() {
-    var mess = $("#message").val();
-    $.post("/sendMessage", {message: mess});
+    //$.post("/sendMessage", {message: mess});
+    if (chatID) {
+      var mess = $("#message").val();
+      if (mess) {
+        $("#message").val("");
+        fb.child("chats").child(chatID).push({name: fb.getAuth().facebook.displayName, message: mess});
+      }
+    }
   });
 
   $("#spitGameButton").click(function() {
@@ -33,5 +43,18 @@ $(document).ready(function() {
 });
 
 function chat(id) {
-  fb.child(fb.getAuth().uid + id + "").push({message: "penis"});
+  //console.log(parseInt(id.substring(9)));
+  var uid = parseInt((fb.getAuth().uid).substring(9));
+  var uid2 = parseInt(id.substring(9));
+  chatID = (uid + uid2) * 7;
+  // fb.child("chats").child(chatID).push({name: fb.getAuth().facebook.displayName, message: "penis"});
+  populateChat();
+}
+
+function populateChat() {
+  $("#chatBox").empty();
+  fb.child("chats").child(chatID).on("child_added", function(snapshot, prevChildKey) {
+    //console.log(snapshot.val());
+    $("#chatBox").prepend("<p>"+snapshot.val().message+"</p>");
+  });
 }
