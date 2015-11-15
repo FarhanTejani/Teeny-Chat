@@ -13,22 +13,24 @@ body{
 
 .left{
 	background-color: blue;
-	width: 50%;
+	width: 30%;
 	height: 100%;
 	display: inline-block;
 	position: absolute;
-	right: 0px;
 	overflow: scroll;
-	
+
 }
 .right{
 	background-color: yellow;
+<<<<<<< HEAD
 	width: 50%;
 	max-height: 100%;
+=======
+	width: 70%;
+>>>>>>> origin/master
 	height: 100%;
 	display: inline-block;
 	position: absolute;
 	overflow: scroll;
+	right: 0px;
 }
-
-

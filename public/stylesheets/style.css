@@ -1,8 +1,32 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+	margin:0;
 }
 
 a {
   color: #00B7FF;
+}
+
+.left{
+	background-color: blue;
+	width: 30%;
+	height: 100%;
+	display: inline-block;
+	position: absolute;
+	overflow: scroll;
+
+}
+.right{
+	background-color: yellow;
+	width: 70%;
+	height: 100%;
+	display: inline-block;
+	position: absolute;
+	overflow: scroll;
+	right: 0px;
+}
+
+.user {
+  display:list-item;
 }

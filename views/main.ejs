@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Hello World</title>
+  <link rel="stylesheet" href="stylesheets/style.css" charset="utf-8">
 </head>
 <body>
   <input type="button" value="Logout" id="logout">
   <h1>teenyChat</h1>
-  <input type="text" id="message" value="">
-  <input type="button" id="sendMessage" value="Submit">
-  <input type="button" id="spitGameButton" value="Spit Game">
-  <div class="chatBox">
-
+  <div class="left"></div>
+  <div class="right">
+    <input type="text" id="message" value="">
+    <input type="button" id="sendMessage" value="Submit">
+    <input type="button" id="spitGameButton" value="Spit Game">
+    <div id="chatBox"></div>
   </div>
 
   <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
