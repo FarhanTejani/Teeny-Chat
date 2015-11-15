@@ -40,7 +40,19 @@ $(document).ready(function() {
   });
 
   $("#spitGameButton").click(function() {
-    $.get("/spitGame");
+    if (chatID) {
+      $.get("/spitGame", function(res) {
+        fb.child("chats").child(chatID).push({name: fb.getAuth().facebook.displayName, message: res.tweet});
+        $.post("/profanity", {text: encodeURIComponent(res.tweet)}, function(res) {
+          //var current = fb.child("users/" + fb.getAuth().uid +"/cussCounter");
+          res = JSON.parse(res);
+          if (res.response == "true") {
+            console.log("You cursed");
+            fb.child("users").child(fb.getAuth().uid).update({cussCounter: (cuss+1)});
+          }
+        });
+      });
+    }
   });
 
   $("#logout").click(function() {
@@ -68,7 +80,7 @@ function populateChat() {
   $("#chatBox").empty();
   fb.child("chats").child(chatID).on("child_added", function(snapshot, prevChildKey) {
     //console.log(snapshot.val());
-    $("#chatBox").prepend("<p>"+snapshot.val().name+ ": " +snapshot.val().message+"</p>");
+    $("#chatBox").prepend("<p class='chatMessage'><span class='name'>"+snapshot.val().name+ "</span>: " +snapshot.val().message+"</p>");
   });
 }
 

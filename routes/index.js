@@ -26,7 +26,7 @@ router.get("/spitGame", function(req, res, next) {
         console.log(err);
       } else {
         var line = result.body.tweet;
-        fb.push({message: line});
+        res.json(result.body);
       }
     });
 });
