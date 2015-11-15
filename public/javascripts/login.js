@@ -28,12 +28,12 @@ $(document).ready(function() {
     fb.unauth();
   });
 
-  $("#getName").click(function() {
-    if(fb.getAuth()) {
-      $(".login").prepend("uid: " + fb.getAuth().uid
-        + " name: " + fb.getAuth().facebook.displayName+"\n");
-    };
-  });
+  // $("#getName").click(function() {
+  //   if(fb.getAuth()) {
+  //     $(".login").prepend("uid: " + fb.getAuth().uid
+  //       + " name: " + fb.getAuth().facebook.displayName+"\n");
+  //   };
+  // });
 
   fb.onAuth(function(authData) {
     if (authData) {
@@ -41,8 +41,10 @@ $(document).ready(function() {
       // use them in Security and Firebase Rules, and show profiles
       fb.child("users").child(authData.uid).set({
         name: authData.facebook.displayName,
-        image: authData.facebook.profileImageURL
+        image: authData.facebook.profileImageURL,
+        uid: authData.uid
       });
+      window.location.assign("/");
     }
   });
 

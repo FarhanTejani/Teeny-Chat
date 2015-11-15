@@ -1,6 +1,16 @@
 var fb = new Firebase("https://teeny-chat.firebaseio.com/");
+fb.child("users").on("child_added", function(snapshot, prevChildKey) {
+  var data = snapshot.val();
+  if (fb.getAuth().uid != data.uid) {
+    $(".chatBox").prepend("<button style='display:list-item;' class='user' value='"+data.uid+"'><img src='"+data.image+"'/>"+data.name+"</button>");
+  }
+});
 
 $(document).ready(function() {
+
+  if (!fb.getAuth()) {
+    window.location.assign("/login");
+  }
 
   $("#sendMessage").click(function() {
     var mess = $("#message").val();
@@ -11,8 +21,17 @@ $(document).ready(function() {
     $.get("/spitGame");
   });
 
-  fb.on("child_added", function(snapshot, prevChildKey) {
-    var data = snapshot.val();
-    $(".chatBox").prepend("<h1 style='color:blue;'>"+data.message+"</h1>");
+  $("#logout").click(function() {
+    console.log("logout");
+    fb.unauth();
+    window.location.assign("/login");
+  });
+
+  $(document.body).on('click', '.user' ,function(){
+    chat(this.value);
   });
 });
+
+function chat(id) {
+  fb.child(fb.getAuth().uid + id + "").push({message: "penis"});
+}
