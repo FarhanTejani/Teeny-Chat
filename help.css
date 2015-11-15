@@ -6,9 +6,18 @@ body{
 .head{
 	text-align: center;
 	background-color: green;
+	
 }
 
+.top {
+	
+	background-image: url(images/log_purple.jpg);
+	height: 30%;
+}
 
+.bottom{
+	height: 70%
+}
 .left{
 	background-color: blue;
 	width: 30%;
