@@ -12,6 +12,8 @@ var showChat = false;
 
 $(document).ready(function() {
 
+  updateCuss();
+
   if (!fb.getAuth()) {
     window.location.assign("/login");
   }
@@ -55,6 +57,6 @@ function populateChat() {
   $("#chatBox").empty();
   fb.child("chats").child(chatID).on("child_added", function(snapshot, prevChildKey) {
     //console.log(snapshot.val());
-    $("#chatBox").prepend("<p>"+snapshot.val().message+"</p>");
+    $("#chatBox").prepend("<p>"+snapshot.val().name+ ": " +snapshot.val().message+"</p>");
   });
 }
