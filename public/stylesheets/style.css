@@ -7,7 +7,12 @@ body {
 a {
   color: #00B7FF;
 }
-
+.top{
+	height: 20%;
+}
+.rest {
+	height: 80%;
+}
 .left{
 	background-color: blue;
 	width: 30%;
