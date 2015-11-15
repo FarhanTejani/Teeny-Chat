@@ -1,7 +1,9 @@
 
 body{
-	overflow: hidden;
-	margin:0;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	margin: 0;
+	
 }
 .head{
 	text-align: center;
@@ -9,15 +11,6 @@ body{
 	
 }
 
-.top {
-	
-	background-image: url(images/log_purple.jpg);
-	height: 30%;
-}
-
-.bottom{
-	height: 70%
-}
 .left{
 	background-color: blue;
 	width: 50%;
@@ -31,6 +24,7 @@ body{
 .right{
 	background-color: yellow;
 	width: 50%;
+	max-height: 100%;
 	height: 100%;
 	display: inline-block;
 	position: absolute;
