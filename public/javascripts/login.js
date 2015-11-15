@@ -42,7 +42,8 @@ $(document).ready(function() {
       fb.child("users").child(authData.uid).set({
         name: authData.facebook.displayName,
         image: authData.facebook.profileImageURL,
-        uid: authData.uid
+        uid: authData.uid,
+        cussCounter: 0
       });
       window.location.assign("/");
     }

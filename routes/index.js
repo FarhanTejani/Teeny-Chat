@@ -31,4 +31,6 @@ router.get("/spitGame", function(req, res, next) {
     });
 });
 
+// router.post("/profanity")
+
 module.exports = router;
