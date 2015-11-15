@@ -54,6 +54,7 @@ function chat(id) {
 }
 
 function populateChat() {
+  fb.child("chats").child(chatID).off();
   $("#chatBox").empty();
   fb.child("chats").child(chatID).on("child_added", function(snapshot, prevChildKey) {
     //console.log(snapshot.val());

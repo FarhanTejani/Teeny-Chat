@@ -13,7 +13,7 @@ body{
 
 .left{
 	background-color: blue;
-	width: 30%;
+	width: 50%;
 	height: 100%;
 	display: inline-block;
 	position: absolute;
@@ -22,13 +22,8 @@ body{
 }
 .right{
 	background-color: yellow;
-<<<<<<< HEAD
 	width: 50%;
 	max-height: 100%;
-=======
-	width: 70%;
->>>>>>> origin/master
-	height: 100%;
 	display: inline-block;
 	position: absolute;
 	overflow: scroll;
