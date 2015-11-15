@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Firebase = require("firebase");
 var fb = new Firebase("https://teeny-chat.firebaseio.com/");
+var request = require('superagent');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,6 +13,19 @@ router.get('/', function(req, res, next) {
 router.post("/sendMessage", function(req, res, next) {
   //console.log(req.body);
   fb.push(req.body);
+});
+
+router.get("/spitGame", function(req, res, next) {
+  request.get("http://pebble-pickup.herokuapp.com/tweets/random")
+    .end(function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result.body);
+        var line = result.body.tweet;
+        fb.push({message: line});
+      }
+    });
 });
 
 module.exports = router;
