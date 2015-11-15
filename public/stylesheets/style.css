@@ -34,4 +34,5 @@ a {
 
 .user {
   display:list-item;
+  width: 100%;
 }
