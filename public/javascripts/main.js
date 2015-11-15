@@ -17,6 +17,12 @@ $(document).ready(function() {
     window.location.assign("/login");
   }
 
+  $("#message").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#sendMessage").click();
+    }
+  });
+
   $("#sendMessage").click(function() {
     //$.post("/sendMessage", {message: mess});
     if (chatID) {
