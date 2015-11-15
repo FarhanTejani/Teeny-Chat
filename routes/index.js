@@ -10,6 +10,10 @@ router.get('/', function(req, res, next) {
   // fb.push({lastName: "Ever", firstName: "Greatest"});
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login');
+});
+
 router.post("/sendMessage", function(req, res, next) {
   //console.log(req.body);
   fb.push(req.body);

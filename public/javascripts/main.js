@@ -1,6 +1,7 @@
 var fb = new Firebase("https://teeny-chat.firebaseio.com/");
 
 $(document).ready(function() {
+
   $("#sendMessage").click(function() {
     var mess = $("#message").val();
     $.post("/sendMessage", {message: mess});
