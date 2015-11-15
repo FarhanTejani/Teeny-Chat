@@ -3,7 +3,6 @@ var fb = new Firebase("https://teeny-chat.firebaseio.com/");
 $(document).ready(function() {
 
   $("#loginWithFacebook").click(function() {
-    console.log("PRESSES LOGIN BUTTON");
     fb.authWithOAuthPopup("facebook", function(error, authData) {
       if (error) {
         if (error.code === "TRANSPORT_UNAVAILABLE") {
@@ -26,7 +25,6 @@ $(document).ready(function() {
   });
 
   $("#logout").click(function() {
-    console.log("LOGOUT");
     fb.unauth();
   });
 
@@ -37,28 +35,15 @@ $(document).ready(function() {
     };
   });
 
-  var isNewUser = true;
-
   fb.onAuth(function(authData) {
-    if (authData && isNewUser) {
+    if (authData) {
       // save the user's profile into the database so we can list users,
       // use them in Security and Firebase Rules, and show profiles
       fb.child("users").child(authData.uid).set({
-        provider: authData.provider,
-        name: getName(authData)
+        name: authData.facebook.displayName,
+        image: authData.facebook.profileImageURL
       });
     }
   });
-
-  function getName(authData) {
-    switch(authData.provider) {
-       case 'password':
-         return authData.password.email.replace(/@.*/, '');
-       case 'twitter':
-         return authData.twitter.displayName;
-       case 'facebook':
-         return authData.facebook.displayName;
-    }
-  }
 
 });
