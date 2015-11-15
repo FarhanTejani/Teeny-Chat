@@ -2,7 +2,7 @@ var originalentries = null;
 window.onload = function() {
     // Look for input box and insert key handler
     var prevTxt = null;
-    var txt = document.getElementsByName('filterTxt');
+    var txt = document.getElementsByName('message');
     if ( txt != null ) {
         txt[0].onkeyup=function(event) {
             var e = event || window.event;
