@@ -31,6 +31,17 @@ router.get("/spitGame", function(req, res, next) {
     });
 });
 
-// router.post("/profanity")
+router.post("/profanity", function(req, res, next) {
+  //console.log(req.body);
+  request.get("http://www.wdyl.com/profanity?q=" + req.body.text)
+  .end(function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result.text);
+      res.json(result.text);
+    }
+  });
+});
 
 module.exports = router;

@@ -1,4 +1,5 @@
 var fb = new Firebase("https://teeny-chat.firebaseio.com/");
+var cuss;
 
 fb.child("users").on("child_added", function(snapshot, prevChildKey) {
   var data = snapshot.val();
@@ -12,8 +13,6 @@ var showChat = false;
 
 $(document).ready(function() {
 
-  updateCuss();
-
   if (!fb.getAuth()) {
     window.location.assign("/login");
   }
@@ -25,6 +24,17 @@ $(document).ready(function() {
       if (mess) {
         $("#message").val("");
         fb.child("chats").child(chatID).push({name: fb.getAuth().facebook.displayName, message: mess});
+        $.post("/profanity", {text: encodeURIComponent(mess)}, function(res) {
+          //var current = fb.child("users/" + fb.getAuth().uid +"/cussCounter");
+          res = JSON.parse(res);
+          if (res.response == "true") {
+            console.log("You cursed");
+            fb.child("users").child(fb.getAuth().uid).update({cussCounter: (cuss+1)});
+          }
+        });
+        // $.get("http://www.wdyl.com/profanity?q=" + encodeURIComponent(mess), function(res) {
+        //   console.log(res);
+        // });
       }
     }
   });
@@ -61,3 +71,8 @@ function populateChat() {
     $("#chatBox").prepend("<p>"+snapshot.val().name+ ": " +snapshot.val().message+"</p>");
   });
 }
+
+fb.child("users").child(fb.getAuth().uid).on("value", function(snapshot) {
+  cuss = snapshot.val().cussCounter;
+  $("#cussCounter").html(snapshot.val().cussCounter);
+});
