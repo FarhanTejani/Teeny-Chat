@@ -1,0 +1,31 @@
+
+body{
+	overflow: hidden;
+	margin:0;
+}
+.head{
+	text-align: center;
+	background-color: green;
+}
+
+
+.left{
+	background-color: blue;
+	width: 50%;
+	height: 100%;
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+	overflow: scroll;
+	
+}
+.right{
+	background-color: yellow;
+	width: 50%;
+	height: 100%;
+	display: inline-block;
+	position: absolute;
+	overflow: scroll;
+}
+
+
