@@ -6,7 +6,7 @@ var request = require('superagent');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('main');
   // fb.push({lastName: "Ever", firstName: "Greatest"});
 });
 
@@ -25,7 +25,6 @@ router.get("/spitGame", function(req, res, next) {
       if (err) {
         console.log(err);
       } else {
-        console.log(result.body);
         var line = result.body.tweet;
         fb.push({message: line});
       }
